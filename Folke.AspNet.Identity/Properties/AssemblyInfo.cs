@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Folke.Orm.Identity")]
 [assembly: AssemblyDescription("Identity Mappings for Folke.Orm")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Folke")]
+[assembly: AssemblyCompany("Arnaud Castaner")]
 [assembly: AssemblyProduct("Folke.Orm.Identity")]
 [assembly: AssemblyCopyright("MIT License")]
 [assembly: AssemblyTrademark("")]
