@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/folkelib/Folke.AspNet.Identity</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First implementation of Identity 2.2</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>orm folke.orm identity</tags>
+  </metadata>
+</package>
