@@ -12,5 +12,10 @@
     <releaseNotes>First implementation of Identity 2.2</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>orm folke.orm identity</tags>
+	<dependencies>
+		<dependency id="Folke.Orm" version="0.1" />
+		<dependency id="Microsoft.AspNet.Identity.Core" version="2.2" />
+		<dependency id="MySql.Data" version="6.9" />
+</dependencies>
   </metadata>
 </package>
