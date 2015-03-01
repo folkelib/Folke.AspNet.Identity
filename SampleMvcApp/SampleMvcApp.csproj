@@ -261,9 +261,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Folke.AspNet.Identity\Folke.Orm.Identity.csproj">
+    <ProjectReference Include="..\Folke.AspNet.Identity\Folke.AspNet.Identity.csproj">
       <Project>{d885d180-7f9f-4022-928f-7e554d2e2268}</Project>
-      <Name>Folke.Orm.Identity</Name>
+      <Name>Folke.AspNet.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

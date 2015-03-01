@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Folke.Orm.Identity")]
+[assembly: AssemblyTitle("Folke.AspNet.Identity")]
 [assembly: AssemblyDescription("Identity Mappings for Folke.Orm")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Arnaud Castaner")]

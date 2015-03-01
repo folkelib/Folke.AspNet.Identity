@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folke.Orm.Identity", "Folke.AspNet.Identity\Folke.Orm.Identity.csproj", "{D885D180-7F9F-4022-928F-7E554D2E2268}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folke.AspNet.Identity", "Folke.AspNet.Identity\Folke.AspNet.Identity.csproj", "{D885D180-7F9F-4022-928F-7E554D2E2268}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMvcApp", "SampleMvcApp\SampleMvcApp.csproj", "{77FE7529-C5AD-4567-B6F7-53C0F957DD74}"
 EndProject
