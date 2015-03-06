@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using MvcApp.Models;
 using WebApplication1.Models;
 using Folke.Orm;
+using Folke.AspNet.Identity;
 
 namespace MvcApp
 {
