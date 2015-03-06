@@ -1,4 +1,5 @@
 ﻿using Folke.AspNet.Identity;
+using Folke.Orm;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Folke.Orm.Identity
+namespace Folke.AspNet.Identity
 {
     public class UserStore<T> : IUserTwoFactorStore<T, string>, IUserLockoutStore<T, string>, IUserEmailStore<T>, IUserPasswordStore<T>, IUserStore<T> where T : IdentityUser, new()
     {
