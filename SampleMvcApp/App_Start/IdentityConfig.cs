@@ -10,7 +10,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MvcApp.Models;
 using WebApplication1.Models;
-using Folke.Orm.Identity;
 using Folke.Orm;
 
 namespace MvcApp
