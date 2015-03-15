@@ -1,5 +1,6 @@
 ﻿using Folke.AspNet.Identity;
 using Folke.Orm;
+using Folke.Orm.Mysql;
 using Microsoft.Owin;
 using Owin;
 using System.Configuration;

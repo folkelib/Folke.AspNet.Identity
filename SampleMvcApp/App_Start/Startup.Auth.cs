@@ -9,6 +9,7 @@ using MvcApp.Models;
 using WebApplication1.Models;
 using Folke.Orm;
 using System.Configuration;
+using Folke.Orm.Mysql;
 
 namespace MvcApp
 {

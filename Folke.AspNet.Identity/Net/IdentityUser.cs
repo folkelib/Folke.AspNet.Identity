@@ -15,9 +15,9 @@ namespace Folke.AspNet.Identity
         public IdentityUser()
         {
             Id = Guid.NewGuid().ToString();
-            /*Claims = new List<IdentityUserClaim>();
+            Claims = new List<IdentityUserClaim>();
             Roles = new List<RoleUser>();
-            Logins = new List<IdentityUserLogin>();*/
+            Logins = new List<IdentityUserLogin>();
         }
 
         public IdentityUser(string userName)
@@ -38,11 +38,11 @@ namespace Folke.AspNet.Identity
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public bool TwoFactorEnabled { get; set; }
-        /*[FolkeList(Join = "IdentityRole")]
+        [FolkeList(Join = "IdentityRole")]
         public IList<RoleUser> Roles { get; set; }
         [FolkeList(Join = "Claims")]
         public IList<IdentityUserClaim> Claims { get; set; }
         [FolkeList(Join = "Logins")]
-        public IList<IdentityUserLogin> Logins { get; set; }*/
+        public IList<IdentityUserLogin> Logins { get; set; }
     }
 }
