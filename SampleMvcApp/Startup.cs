@@ -1,5 +1,6 @@
 ﻿using Folke.AspNet.Identity;
 using Folke.Orm;
+using Folke.Orm.Mapping;
 using Folke.Orm.Mysql;
 using Microsoft.Owin;
 using Owin;
@@ -13,7 +14,7 @@ namespace MvcApp
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            var session = new FolkeConnection(new MySqlDriver(), ConfigurationManager.ConnectionStrings["FolkeIdentity"].ConnectionString);
+            var session = new FolkeConnection(new MySqlDriver(), new Mapper(), ConfigurationManager.ConnectionStrings["FolkeIdentity"].ConnectionString);
             session.UpdateSchema(typeof(RoleUser).Assembly);
         }
     }

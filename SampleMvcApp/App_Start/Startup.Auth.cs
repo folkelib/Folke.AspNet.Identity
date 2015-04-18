@@ -1,4 +1,5 @@
 ﻿using System;
+using Folke.Orm.Mapping;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -19,7 +20,7 @@ namespace MvcApp
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(() => new FolkeConnection(new MySqlDriver(), ConfigurationManager.ConnectionStrings["FolkeIdentity"].ConnectionString));
+            app.CreatePerOwinContext(() => new FolkeConnection(new MySqlDriver(), new Mapper(), ConfigurationManager.ConnectionStrings["FolkeIdentity"].ConnectionString));
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

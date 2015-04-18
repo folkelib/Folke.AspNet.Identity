@@ -32,12 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Folke.Orm, Version=0.1.5552.31180, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Folke.Orm, Version=1.0.5586.15586, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Folke.Orm.0.1.5552.31180\lib\net45\Folke.Orm.dll</HintPath>
+      <HintPath>..\packages\Folke.Orm.1.0.5586.15586\lib\net45\Folke.Orm.dll</HintPath>
     </Reference>
-    <Reference Include="Folke.Orm.Mysql">
-      <HintPath>..\packages\Folke.Orm.Mysql.1.0.0.0\lib\net45\Folke.Orm.Mysql.dll</HintPath>
+    <Reference Include="Folke.Orm.Mysql, Version=1.0.5586.15587, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Folke.Orm.Mysql.1.0.5586.15587\lib\net45\Folke.Orm.Mysql.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -56,12 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Net\IdentityRole.cs" />
-    <Compile Include="Net\IdentityUser.cs" />
-    <Compile Include="Net\IdentityUserClaims.cs" />
-    <Compile Include="Net\IdentityUserLogin.cs" />
-    <Compile Include="Net\RoleUser.cs" />
-    <Compile Include="Net\UserStore.cs" />
+    <Compile Include="IdentityRole.cs" />
+    <Compile Include="IdentityUser.cs" />
+    <Compile Include="IdentityUserClaims.cs" />
+    <Compile Include="IdentityUserLogin.cs" />
+    <Compile Include="RoleUser.cs" />
+    <Compile Include="UserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,6 @@
-﻿using Folke.AspNet.Identity;
-using Folke.Orm;
+﻿using Folke.Orm;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Folke.AspNet.Identity
@@ -21,15 +17,15 @@ namespace Folke.AspNet.Identity
 
         private void ThrowIfDisposed()
         {
-            if (this._disposed)
+            if (_disposed)
             {
-                throw new ObjectDisposedException(this.GetType().Name);
+                throw new ObjectDisposedException(GetType().Name);
             }
         }
 
         public async Task CreateAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
@@ -44,7 +40,7 @@ namespace Folke.AspNet.Identity
 
         public async Task DeleteAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
@@ -54,7 +50,7 @@ namespace Folke.AspNet.Identity
 
         public async Task<T> FindByIdAsync(string userId)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (userId == null)
             {
                 throw new ArgumentNullException("userId");
@@ -64,7 +60,7 @@ namespace Folke.AspNet.Identity
 
         public async Task<T> FindByNameAsync(string userName)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (userName == null)
             {
                 throw new ArgumentNullException("userName");
@@ -76,7 +72,7 @@ namespace Folke.AspNet.Identity
 
         public async Task UpdateAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
@@ -92,27 +88,27 @@ namespace Folke.AspNet.Identity
 
         public async Task<string> GetPasswordHashAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return await Task.FromResult<string>(user.PasswordHash);
+            return await Task.FromResult(user.PasswordHash);
         }
 
         public async Task<bool> HasPasswordAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return await Task.FromResult<bool>(user.PasswordHash != null);
+            return await Task.FromResult(user.PasswordHash != null);
         }
 
         public async Task SetPasswordHashAsync(T user, string passwordHash)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
@@ -127,7 +123,7 @@ namespace Folke.AspNet.Identity
 
         public async Task<T> FindByEmailAsync(string email)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (email == null)
             {
                 throw new ArgumentNullException("email");
@@ -140,69 +136,69 @@ namespace Folke.AspNet.Identity
 
         public Task<string> GetEmailAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return Task<T>.FromResult(user.Email);
+            return Task.FromResult(user.Email);
         }
 
         public Task<bool> GetEmailConfirmedAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return Task.FromResult<bool>(user.EmailConfirmed);
+            return Task.FromResult(user.EmailConfirmed);
         }
 
         public Task SetEmailAsync(T user, string email)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
             user.Email = email;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
 
         public Task SetEmailConfirmedAsync(T user, bool confirmed)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
             user.EmailConfirmed = confirmed;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
 
         public Task<int> GetAccessFailedCountAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return Task.FromResult<int>(user.AccessFailedCount);
+            return Task.FromResult(user.AccessFailedCount);
         }
 
         public Task<bool> GetLockoutEnabledAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return Task.FromResult<bool>(user.LockoutEnabled);
+            return Task.FromResult(user.LockoutEnabled);
         }
 
         public Task<DateTimeOffset> GetLockoutEndDateAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
@@ -218,46 +214,46 @@ namespace Folke.AspNet.Identity
             {
                 dateTimeOffset = new DateTimeOffset();
             }
-            return Task.FromResult<DateTimeOffset>(dateTimeOffset);
+            return Task.FromResult(dateTimeOffset);
         }
 
         public Task<int> IncrementAccessFailedCountAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
             
             user.AccessFailedCount = user.AccessFailedCount + 1;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
 
         public Task ResetAccessFailedCountAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
             user.AccessFailedCount = 0;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
 
         public Task SetLockoutEnabledAsync(T user, bool enabled)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
             user.LockoutEnabled = enabled;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
 
         public Task SetLockoutEndDateAsync(T user, DateTimeOffset lockoutEnd)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
@@ -270,27 +266,27 @@ namespace Folke.AspNet.Identity
                 nullable = new DateTime?(lockoutEnd.UtcDateTime);
 
             user.LockoutEndDateUtc = nullable;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
         
         public Task<bool> GetTwoFactorEnabledAsync(T user)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
-            return Task.FromResult<bool>(user.TwoFactorEnabled);
+            return Task.FromResult(user.TwoFactorEnabled);
         }
 
         public Task SetTwoFactorEnabledAsync(T user, bool enabled)
         {
-            this.ThrowIfDisposed();
+            ThrowIfDisposed();
             if (user == null)
                 throw new ArgumentNullException("user");
             
             user.TwoFactorEnabled = enabled;
-            return Task.FromResult<int>(0);
+            return Task.FromResult(0);
         }
     }
 }

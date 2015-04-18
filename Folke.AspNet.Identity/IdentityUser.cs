@@ -1,11 +1,9 @@
 ﻿using Folke.Orm;
+using Folke.Orm.Mapping;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Folke.AspNet.Identity
 {
@@ -24,7 +22,7 @@ namespace Folke.AspNet.Identity
             : this()
         {
             UserName = userName;
-            Id = Guid.NewGuid().ToString(); ;
+            Id = Guid.NewGuid().ToString();
         }
 
         [Key]
