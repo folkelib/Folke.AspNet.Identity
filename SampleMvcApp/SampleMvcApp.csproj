@@ -45,13 +45,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Folke.Orm, Version=1.0.5586.15586, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Folke.Orm, Version=1.0.5587.40234, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Folke.Orm.1.0.5586.15586\lib\net45\Folke.Orm.dll</HintPath>
+      <HintPath>..\packages\Folke.Orm.1.0.5587.40234\lib\net45\Folke.Orm.dll</HintPath>
     </Reference>
-    <Reference Include="Folke.Orm.Mysql, Version=1.0.5586.15587, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Folke.Orm.Mysql, Version=1.0.5587.40235, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Folke.Orm.Mysql.1.0.5586.15587\lib\net45\Folke.Orm.Mysql.dll</HintPath>
+      <HintPath>..\packages\Folke.Orm.Mysql.1.0.5587.40235\lib\net45\Folke.Orm.Mysql.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

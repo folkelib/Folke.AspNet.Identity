@@ -6,7 +6,16 @@ using Folke.Orm;
 namespace Folke.AspNet.Identity
 {
     [Table("aspnet_Roles")]
-    public class IdentityRole : IRole
+    public class IdentityRole : IdentityRole<string>, IRole
+    {
+        public IdentityRole()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+    }
+
+    [Table("aspnet_Roles")]
+    public class IdentityRole<TKey> : IRole<TKey>
     {
         public IdentityRole()
             : this("")
@@ -15,12 +24,11 @@ namespace Folke.AspNet.Identity
 
         public IdentityRole(string roleName)
         {
-            Id = Guid.NewGuid().ToString();
             Name = roleName;
         }
 
         [Key]
-        public string Id { get; set; }
+        public TKey Id { get; set; }
         public string Name { get; set; }
     }
 }

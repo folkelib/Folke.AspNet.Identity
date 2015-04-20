@@ -1,14 +1,23 @@
-﻿using Folke.Orm;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Folke.Orm;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Threading.Tasks;
 
 namespace Folke.AspNet.Identity
 {
-    public class UserStore<T> : IUserTwoFactorStore<T, string>, IUserLockoutStore<T, string>, IUserEmailStore<T>, IUserPasswordStore<T>, IUserStore<T> where T : IdentityUser, new()
+    public class UserStore<T> : UserStore<T, string>, IUserStore<T> where T : IdentityUser<string>, new()
+    {
+        public UserStore(FolkeConnection connection) : base(connection)
+        {
+        }
+    }
+
+    public class UserStore<T, TKey> : IUserTwoFactorStore<T, TKey>, IUserLockoutStore<T, TKey>, IUserEmailStore<T, TKey>, IUserPasswordStore<T, TKey>, IUserPhoneNumberStore<T, TKey>, IUserLoginStore<T, TKey> where T : IdentityUser<TKey>, new()
     {
         private readonly FolkeConnection connection;
-        private bool _disposed;
+        private bool disposed;
 
         public UserStore(FolkeConnection connection)
         {
@@ -17,7 +26,7 @@ namespace Folke.AspNet.Identity
 
         private void ThrowIfDisposed()
         {
-            if (_disposed)
+            if (disposed)
             {
                 throw new ObjectDisposedException(GetType().Name);
             }
@@ -48,10 +57,10 @@ namespace Folke.AspNet.Identity
             await connection.DeleteAsync(user);
         }
 
-        public async Task<T> FindByIdAsync(string userId)
+        public async Task<T> FindByIdAsync(TKey userId)
         {
             ThrowIfDisposed();
-            if (userId == null)
+            if (userId.Equals(default(T)))
             {
                 throw new ArgumentNullException("userId");
             }
@@ -83,7 +92,7 @@ namespace Folke.AspNet.Identity
         public void Dispose()
         {
             connection.Dispose();
-            _disposed = true;
+            disposed = true;
         }
 
         public async Task<string> GetPasswordHashAsync(T user)
@@ -259,11 +268,7 @@ namespace Folke.AspNet.Identity
                 throw new ArgumentNullException("user");
             }
 
-            DateTime? nullable;
-            if (lockoutEnd == DateTimeOffset.MinValue)
-                nullable = null;
-            else
-                nullable = new DateTime?(lockoutEnd.UtcDateTime);
+            DateTime? nullable = lockoutEnd == DateTimeOffset.MinValue ? null : new DateTime?(lockoutEnd.UtcDateTime);
 
             user.LockoutEndDateUtc = nullable;
             return Task.FromResult(0);
@@ -287,6 +292,69 @@ namespace Folke.AspNet.Identity
             
             user.TwoFactorEnabled = enabled;
             return Task.FromResult(0);
+        }
+
+        public Task SetPhoneNumberAsync(T user, string phoneNumber)
+        {
+            user.PhoneNumber = phoneNumber;
+            return Task.FromResult(0);
+        }
+
+        public Task<string> GetPhoneNumberAsync(T user)
+        {
+            return Task.FromResult(user.PhoneNumber);
+        }
+
+        public Task<bool> GetPhoneNumberConfirmedAsync(T user)
+        {
+            return Task.FromResult(user.PhoneNumberConfirmed);
+        }
+
+        public Task SetPhoneNumberConfirmedAsync(T user, bool confirmed)
+        {
+            user.PhoneNumberConfirmed = confirmed;
+            return Task.FromResult(0);
+        }
+
+        public async Task AddLoginAsync(T user, UserLoginInfo login)
+        {
+            var identityUserLogin = new IdentityUserLogin<T, TKey>
+            {
+                LoginProvider = login.LoginProvider,
+                ProviderKey = login.ProviderKey,
+                User = user
+            };
+            await connection.SaveAsync(identityUserLogin);
+        }
+
+        public async Task RemoveLoginAsync(T user, UserLoginInfo login)
+        {
+            var identityUserLogin =
+                await
+                    connection.QueryOver<IdentityUserLogin<T, TKey>>()
+                        .Where(x => x.User == user && x.LoginProvider == login.LoginProvider)
+                        .SingleAsync();
+            await connection.DeleteAsync(identityUserLogin);
+        }
+
+        public async Task<IList<UserLoginInfo>> GetLoginsAsync(T user)
+        {
+            var results =
+                await
+                    connection.QueryOver<IdentityUserLogin<T, TKey>>()
+                        .Where(x => x.User == user)
+                        .ListAsync();
+            return results.Select(x => new UserLoginInfo(x.LoginProvider, x.ProviderKey)).ToList();
+        }
+
+        public async Task<T> FindAsync(UserLoginInfo login)
+        {
+            var identityUserLogin =
+                await
+                    connection.QueryOver<IdentityUserLogin<T, TKey>>(x => x.User)
+                        .Where(x => x.LoginProvider == login.LoginProvider && x.ProviderKey == login.ProviderKey)
+                        .SingleAsync();
+            return identityUserLogin.User;
         }
     }
 }

@@ -5,6 +5,7 @@ using Folke.Orm.Mysql;
 using Microsoft.Owin;
 using Owin;
 using System.Configuration;
+using WebApplication1.Models;
 
 [assembly: OwinStartupAttribute(typeof(MvcApp.Startup))]
 namespace MvcApp
@@ -15,7 +16,8 @@ namespace MvcApp
         {
             ConfigureAuth(app);
             var session = new FolkeConnection(new MySqlDriver(), new Mapper(), ConfigurationManager.ConnectionStrings["FolkeIdentity"].ConnectionString);
-            session.UpdateSchema(typeof(RoleUser).Assembly);
+            session.UpdateStringIdentityUserSchema<ApplicationUser>();
+            session.UpdateStringIdentityRoleSchema();
         }
     }
 }

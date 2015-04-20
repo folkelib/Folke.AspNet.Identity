@@ -5,17 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Folke.AspNet.Identity
 {
     [Table("aspnet_UserClaims")]
-    public class IdentityUserClaim
+    public class IdentityUserClaim<TUser, TKey> where TUser: IdentityUser<TKey>
     {
-        public IdentityUserClaim()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
-
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }
-        public IdentityUser User { get; set; }
+        public TUser User { get; set; }
     }
 }

@@ -8,25 +8,38 @@ using System.ComponentModel.DataAnnotations;
 namespace Folke.AspNet.Identity
 {
     [Table("aspnet_Users")]
-    public class IdentityUser : IUser
+    public class IdentityUser : IdentityUser<string>
     {
         public IdentityUser()
         {
             Id = Guid.NewGuid().ToString();
-            Claims = new List<IdentityUserClaim>();
-            Roles = new List<RoleUser>();
-            Logins = new List<IdentityUserLogin>();
         }
 
         public IdentityUser(string userName)
             : this()
         {
             UserName = userName;
-            Id = Guid.NewGuid().ToString();
+        }
+    }
+
+    [Table("aspnet_Users")]
+    public class IdentityUser<TKey> : IUser<TKey>
+    {
+        public IdentityUser()
+        {
+            Claims = new List<IdentityUserClaim<IdentityUser<TKey>,TKey>>();
+            Roles = new List<RoleUser>();
+            Logins = new List<IdentityUserLogin<IdentityUser<TKey>,TKey>>();
+        }
+
+        public IdentityUser(string userName)
+            : this()
+        {
+            UserName = userName;
         }
 
         [Key]
-        public string Id { get; set; }
+        public TKey Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -39,8 +52,10 @@ namespace Folke.AspNet.Identity
         [FolkeList(Join = "IdentityRole")]
         public IList<RoleUser> Roles { get; set; }
         [FolkeList(Join = "Claims")]
-        public IList<IdentityUserClaim> Claims { get; set; }
+        public IList<IdentityUserClaim<IdentityUser<TKey>, TKey>> Claims { get; set; }
         [FolkeList(Join = "Logins")]
-        public IList<IdentityUserLogin> Logins { get; set; }
+        public IList<IdentityUserLogin<IdentityUser<TKey>, TKey>> Logins { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
     }
 }
