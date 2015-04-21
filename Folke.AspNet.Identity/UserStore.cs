@@ -16,10 +16,10 @@ namespace Folke.AspNet.Identity
 
     public class UserStore<T, TKey> : IUserTwoFactorStore<T, TKey>, IUserLockoutStore<T, TKey>, IUserEmailStore<T, TKey>, IUserPasswordStore<T, TKey>, IUserPhoneNumberStore<T, TKey>, IUserLoginStore<T, TKey> where T : IdentityUser<TKey>, new()
     {
-        private readonly FolkeConnection connection;
+        private readonly IFolkeConnection connection;
         private bool disposed;
 
-        public UserStore(FolkeConnection connection)
+        public UserStore(IFolkeConnection connection)
         {
             this.connection = connection;
         }
