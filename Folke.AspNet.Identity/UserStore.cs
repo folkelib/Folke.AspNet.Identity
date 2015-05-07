@@ -14,7 +14,7 @@ namespace Folke.AspNet.Identity
         }
     }
 
-    public class UserStore<T, TKey> : IUserTwoFactorStore<T, TKey>, IUserLockoutStore<T, TKey>, IUserEmailStore<T, TKey>, IUserPasswordStore<T, TKey>, IUserPhoneNumberStore<T, TKey>, IUserLoginStore<T, TKey> where T : IdentityUser<TKey>, new()
+    public class UserStore<T, TKey> : IUserTwoFactorStore<T, TKey>, IUserLockoutStore<T, TKey>, IUserEmailStore<T, TKey>, IUserPasswordStore<T, TKey>, IUserPhoneNumberStore<T, TKey>, IUserLoginStore<T, TKey>, IUserSecurityStampStore<T, TKey> where T : IdentityUser<TKey>, new()
     {
         private readonly IFolkeConnection connection;
         private bool disposed;
@@ -355,6 +355,17 @@ namespace Folke.AspNet.Identity
                         .Where(x => x.LoginProvider == login.LoginProvider && x.ProviderKey == login.ProviderKey)
                         .SingleAsync();
             return identityUserLogin.User;
+        }
+
+        public Task SetSecurityStampAsync(T user, string stamp)
+        {
+            user.SecurityStamp = stamp;
+            return Task.FromResult(0);
+        }
+
+        public Task<string> GetSecurityStampAsync(T user)
+        {
+            return Task.FromResult(user.SecurityStamp);
         }
     }
 }
